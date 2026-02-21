@@ -48,17 +48,27 @@ animatedElements.forEach((animElem) => {
     observer.observe(animElem);
 });
 
+// 2. gyak
 
-/*
-// Függvény deklarációk különböző módjai
-function onScroll() {
+const progressWrapper = document.createElement("div");
+progressWrapper.style = "position: fixed; width: 100%; z-index: 2000;";
+
+progressWrapper.innerHTML = `
+    <div
+        id="progressBar"
+        style="height: 4px; background-color: red; width: 0%"
+    ></div>
+`;
+
+document.body.prepend(progressWrapper);
+
+const progressBar = document.querySelector("#progressBar");
+function onScrollProgress() {
+    console.log("Görgetek2")
+
+    const scrollPercent = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+    progressBar.style.width = scrollPercent + "%";
 
 }
 
-const onScroll2 = () => {
-
-}
-
-const onScroll3 = function() {
-    
-}*/
+document.addEventListener("scroll", _.throttle(onScrollProgress, 10));
