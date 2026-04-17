@@ -1,20 +1,16 @@
-import React from 'react'
-import { Button } from './ui/button'
-import { ShoppingCart } from 'lucide-react'
+import type { Product } from "@/data/products"
+import ProductSheet from "./ProductSheet"
 
-const Navbar = (props: { cartCount: number }) => {
+const Navbar = () => {
   return (
-    <header className='border-b sticky top-0 bg-background z-10'>
-        <div className='max-w-5xl mx-auto px-4 h-16 flex items-center justify-between '>
-            <span>📊 Webshop</span>
-            <span>Középen vagyok</span>
-            <Button>
-                <ShoppingCart />
-                Kosár
-                ({props.cartCount})
-            </Button>
+    <header className="sticky top-0 z-10 border-b bg-background">
+      <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-4">
+        <span>📊 Webshop</span>
+        <span>Középen vagyok</span>
+        
 
-        </div>
+        <ProductSheet />
+      </div>
     </header>
   )
 }
