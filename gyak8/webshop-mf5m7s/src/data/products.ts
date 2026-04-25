@@ -5,6 +5,10 @@ export interface Product {
     emoji: string,
 }
 
+export interface CartItem extends Product {
+  quantity: number
+}
+
 export const products:Product[] = [
   { id: 1, name: 'Mechanical Keyboard', price: 29900, emoji: '⌨️' },
   { id: 2, name: 'Wireless Mouse', price: 12900, emoji: '🖱️' },

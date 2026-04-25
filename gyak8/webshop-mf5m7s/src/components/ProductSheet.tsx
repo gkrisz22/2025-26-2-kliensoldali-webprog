@@ -1,4 +1,3 @@
-import React from "react"
 import { ShoppingCart } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -12,11 +11,10 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
-import type { Product } from "@/data/products"
 import { useCart } from "@/context/CartContext"
 
 const ProductSheet = () => {
-      const { cartItems, addToCart } = useCart();
+      const { cartItems } = useCart();
     
   return (
     <Sheet>

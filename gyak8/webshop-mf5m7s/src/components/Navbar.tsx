@@ -1,4 +1,3 @@
-import type { Product } from "@/data/products"
 import ProductSheet from "./ProductSheet"
 
 const Navbar = () => {

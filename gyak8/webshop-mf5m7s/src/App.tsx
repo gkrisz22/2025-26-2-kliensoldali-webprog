@@ -1,4 +1,3 @@
-import { useState } from "react"
 import Navbar from "./components/Navbar"
 import ProductCard from "./components/ProductCard"
 import { products, type Product } from "./data/products"
@@ -14,7 +13,7 @@ export function App() {
     setCartItems(state => [...state, product])
   }*/
 
-  const { cartItems, addToCart } = useCart();
+  const { addToCart } = useCart();
 
   return (
       <div className="min-h-screen bg-background">
