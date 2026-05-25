@@ -42,7 +42,7 @@ export const webshopApi = createApi({
     },
 
     // Cookie alapú megoldás (alternatíva a Bearer tokenhez):
-    // credentials: 'include',
+    credentials: 'include',
   }),
   endpoints: (builder) => ({
 
@@ -54,7 +54,7 @@ export const webshopApi = createApi({
     // Body: { items: { productId: number; quantity: number }[] }
     // Válasz: Order
 
-    // http://localhost:3000/api/order POST (PUT, PATCH)
+    // http://localhost:3000/api/orders POST (PUT, PATCH)
     placeOrder: builder.mutation<Order, { items: { productId: number; quantity: number }[] }>({
       query: (body) => ({ url: "/orders", method: "POST", body }) // body: body
     }),
@@ -70,10 +70,10 @@ export const webshopApi = createApi({
     }),
 
     // Cookie alapú megoldás: a szerver validálja a sütit és visszaadja a felhasználót
-    // getMe: builder.query<AuthUser, void>({
-    //   query: () => '/auth/me',
-    //   providesTags: ['Auth'],
-    // }),
+    getMe: builder.query<AuthUser, void>({
+       query: () => '/auth/me',
+       providesTags: ['Auth'],
+    }),
 
     logoutUser: builder.mutation<void, void>({
       query: () => ({ url: '/auth/logout', method: 'POST' }),
@@ -85,7 +85,7 @@ export const webshopApi = createApi({
 export const {
   useGetOrdersQuery,
   useLoginMutation,
-  // useGetMeQuery,
+  useGetMeQuery,
   useLogoutUserMutation,
   useGetProductsQuery, // GET - query
   usePlaceOrderMutation // POST - mutation

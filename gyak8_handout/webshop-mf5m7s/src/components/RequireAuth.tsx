@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button'
 import { useAppDispatch, useAppSelector } from '@/store/hooks'
 import { selectToken, setCredentials } from '@/store/authSlice'
 import { useLoginMutation } from '@/store/webshopApi'
+import type { RootState } from '@/store/store'
 
 // Cookie alapú megoldás: ehhez importálnánk a useGetMeQuery-t
 // import { useGetMeQuery, useLoginMutation } from '@/store/webshopApi'
@@ -13,7 +14,7 @@ interface RequireAuthProps {
 
 const RequireAuth = ({ children }: RequireAuthProps) => {
   // Bearer token: a tokent a Redux store-ból olvassuk
-  const token = useAppSelector(selectToken)
+  const token = useAppSelector((state: RootState) => state.auth.token);
 
   // Cookie alapú megoldás: a szerver validálja a sütit, és visszaadja a felhasználót.
   // Újratöltés után is működik, mert a süti a böngészőben marad.
@@ -38,7 +39,7 @@ function LoginForm() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     try {
-      const result = await login({ email, password }).unwrap()
+      const result = await login({ email, password }).unwrap();
       dispatch(setCredentials({ token: result.token, user: result.user }))
     } catch {
       // a hibát az RTK Query `error` state-je kezeli

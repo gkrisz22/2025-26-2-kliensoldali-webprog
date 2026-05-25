@@ -3,15 +3,20 @@ import RequireAuth from '@/components/RequireAuth'
 import { useAppDispatch, useAppSelector } from '@/store/hooks'
 import { selectUser, logout } from '@/store/authSlice'
 import { useGetOrdersQuery, useLogoutUserMutation } from '@/store/webshopApi'
+import type { RootState } from '@/store/store'
 
 // Cookie alapú megoldás: useGetMeQuery-t használnánk a felhasználó adataihoz
 // import { useGetOrdersQuery, useGetMeQuery, useLogoutUserMutation } from '@/store/webshopApi'
 
-const AdminPage = () => (
+const AdminPage = () => {
+  const role = useAppSelector((state:RootState) => state.auth.user?.role);
+
+  return (
   <RequireAuth>
+    
     <OrderList />
-  </RequireAuth>
-)
+  </RequireAuth>)
+}
 
 function OrderList() {
   const dispatch = useAppDispatch()

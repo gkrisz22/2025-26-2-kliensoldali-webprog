@@ -22,14 +22,15 @@ export const authSlice = createSlice({
   reducers: {
     // TODO: setCredentials — tárolja el a tokent és a felhasználó adatait
     setCredentials(state, action: PayloadAction<{ token: string; user: AuthUser }>) {
-      // state.token = action.payload.token
-      // state.user = action.payload.user
+      state.token = action.payload.token
+      state.user = action.payload.user
+
     },
 
     // TODO: logout — törölje a tokent és a felhasználó adatait
     logout(state) {
-      // state.token = null
-      // state.user = null
+      state.token = null
+      state.user = null
     },
   },
 })
